@@ -12,12 +12,15 @@ class Timeout(Exception):
     pass
 
 EPSILON = 1e-5
+
 def custom_score(game,plaer):
-    pass
+    return custom_score_distaceWeightedPositions(game,plaer)
+
 def getEdges (width,height):
     columnEdges = [[r,c] for r in range(height) for c in [0,width-1]]
     rowEdges = [[r,c] for r in [0,height-1] for c in range(width)]
     return columnEdges+rowEdges
+
 def getCorners(width,height):
     return([[0,0],[0,width-1],[height-1,0],[height-1,width-1]])
 
@@ -114,6 +117,7 @@ def custom_score_edgeAndCornerLimiting(game,player):
     evalMetric = float(own_movesCt-len(own_edgeAndCorner_moves) - opp_movesCt+2*len(opp_edgeAndCorner_moves))/open_spaces
     #evalMetric = float(own_movesCt - opp_movesCt+3*len(opp_edgeAndCorner_moves))/open_spaces
     return evalMetric
+
 def custom_score_normalizedByBlankSpaces(game, player):
     """Calculate the heuristic value of a game state from the point of view
     of the given player.
